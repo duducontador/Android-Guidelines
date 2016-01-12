@@ -19,6 +19,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        dev {
+            applicationId 'com.ciandt.worldwonders.dev'
+            // MyLog.LOG_LEVEL_DEBUG = 4;
+            buildConfigField("int", "LOG_LEVEL", "4")
+        }
+
+        hom {
+            applicationId 'com.ciandt.worldwonders.hom'
+            // MyLog.LOG_LEVEL_WARN = 2;
+            buildConfigField("int", "LOG_LEVEL", "2")
+        }
+
+        prod {
+            applicationId 'com.ciandt.worldwonders'
+            // MyLog.LOG_LEVEL_NONE = 0
+            buildConfigField("int", "LOG_LEVEL", "0")
+        }
+    }
+
 }
 
 dependencies {
