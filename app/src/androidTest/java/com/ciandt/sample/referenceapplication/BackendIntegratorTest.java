@@ -53,10 +53,10 @@ public class BackendIntegratorTest {
 
             @Override
             protected void onPostExecute(OperationResult<JSONObject> operationResult) {
-                if (operationResult.result != null) {
-                    Toast.makeText(mContext, "Result: \n" + operationResult.result, Toast.LENGTH_LONG).show();
+                if (operationResult.getResult() != null) {
+                    Toast.makeText(mContext, "Result: \n" + operationResult.getResult(), Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(mContext, "Error: "+operationResult.error, Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "Error: "+operationResult.getError(), Toast.LENGTH_LONG).show();
                 }
 
                 signal.countDown();

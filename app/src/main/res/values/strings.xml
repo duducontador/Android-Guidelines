@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reference Application</string>
+    <string name="app_name">CI&amp;T Android - Guidelines</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">Sign in</string>
 
@@ -14,4 +14,5 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_no_connection">There is no internet connection</string>
     <string name="error_generic">The operation could not be completed. Please, try again later.</string>
+    <string name="msg_no_result_found">No result found.</string>
 </resources>

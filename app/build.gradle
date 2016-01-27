@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.ciandt.sample.referenceapplication"
@@ -22,19 +22,19 @@ android {
 
     productFlavors {
         dev {
-            applicationId 'com.ciandt.worldwonders.dev'
+            applicationId "com.ciandt.sample.referenceapplication.dev"
             // MyLog.LOG_LEVEL_DEBUG = 4;
             buildConfigField("int", "LOG_LEVEL", "4")
         }
 
         hom {
-            applicationId 'com.ciandt.worldwonders.hom'
+            applicationId "com.ciandt.sample.referenceapplication.hom"
             // MyLog.LOG_LEVEL_WARN = 2;
             buildConfigField("int", "LOG_LEVEL", "2")
         }
 
         prod {
-            applicationId 'com.ciandt.worldwonders'
+            applicationId "com.ciandt.sample.referenceapplication"
             // MyLog.LOG_LEVEL_NONE = 0
             buildConfigField("int", "LOG_LEVEL", "0")
         }
@@ -46,9 +46,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
-    androidTestCompile 'com.android.support:support-annotations:23.1.0'
+    androidTestCompile 'com.android.support:support-annotations:23.1.1'
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
+
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
 }
