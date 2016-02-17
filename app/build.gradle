@@ -11,42 +11,62 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            keyAlias "alias"
+            keyPassword "password"
+            storeFile file("release.keystore")
+            storePassword "password"
+        }
+    }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            // TODO: Set your default log configuration for all buildTypes
+            buildConfigField("int", "LOG_LEVEL", "4") // MyLog.LOG_LEVEL_DEBUG = 4;
+            // TODO: Set your default host for all buildTypes
+            buildConfigField("String", "DEFAULT_HOST", "\"api.parse.com/1\"")
+        }
+
+        stage {
+            initWith(buildTypes.debug)
+
+            applicationIdSuffix ".stage"
+            buildConfigField("int", "LOG_LEVEL", "2") // MyLog.LOG_LEVEL_WARN = 2;
+            buildConfigField("String", "DEFAULT_HOST", "\"api.parse.com/stage/1\"")
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            buildConfigField("int", "LOG_LEVEL", "0") // MyLog.LOG_LEVEL_NONE = 0;
+            buildConfigField("String", "DEFAULT_HOST", "\"api.parse.com/prod/1\"")
         }
     }
 
     productFlavors {
-        dev {
-            applicationId "com.ciandt.sample.referenceapplication.dev"
-            // MyLog.LOG_LEVEL_DEBUG = 4;
-            buildConfigField("int", "LOG_LEVEL", "4")
+        free {
+            applicationId "com.ciandt.sample.referenceapplication.free"
+            // TODO: anothers examples: set your analytics track id
+            buildConfigField("String", "ANALYTICS_TRACK_ID", "\"UA-000000-01\"")
         }
 
-        hom {
-            applicationId "com.ciandt.sample.referenceapplication.hom"
-            // MyLog.LOG_LEVEL_WARN = 2;
-            buildConfigField("int", "LOG_LEVEL", "2")
-        }
-
-        prod {
-            applicationId "com.ciandt.sample.referenceapplication"
-            // MyLog.LOG_LEVEL_NONE = 0
-            buildConfigField("int", "LOG_LEVEL", "0")
+        pro {
+            applicationId "com.ciandt.sample.referenceapplication.pro"
+            buildConfigField("String", "ANALYTICS_TRACK_ID", "\"UA-000000-02\"")
         }
     }
-
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
 
+    testCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support:support-annotations:23.1.1'
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'
@@ -54,6 +74,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
 
+    freeCompile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
     compile "com.google.android.gms:play-services:8.3.0"
