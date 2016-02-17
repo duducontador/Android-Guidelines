@@ -2,13 +2,13 @@ package com.ciandt.sample.referenceapplication.notification;
 
 import android.content.Context;
 
-import com.btfit.infrastructure.BTLiveLog;
+import com.ciandt.sample.referenceapplication.infrastructure.MyLog;
 
 public class SyncPushFactory {
 
     public static SyncPushNotification createSyncPush(Context ctx, String action, String extra) {
         if (action == null) {
-            BTLiveLog.error("New push notification of type sync does not have 'action' atribute");
+            MyLog.error("New push notification of type sync does not have 'action' atribute");
             return null;
         }
 

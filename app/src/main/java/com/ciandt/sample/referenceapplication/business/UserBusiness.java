@@ -13,9 +13,6 @@ import org.json.JSONObject;
 import java.util.AbstractMap;
 import java.util.HashMap;
 
-/**
- * Created by athila on 02/12/15.
- */
 public class UserBusiness extends BaseBusiness {
 
     private BackendIntegrator mBackendIntegrator;
