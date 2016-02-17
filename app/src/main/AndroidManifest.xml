@@ -10,12 +10,28 @@
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
+    <!-- For push notifications -->
+    <permission android:name="com.ciandt.sample.referenceapplication.permission.C2D_MESSAGE"
+                android:protectionLevel="signature" />
+    <uses-permission android:name="com.ciandt.sample.referenceapplication.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
+        android:name=".infrastructure.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- PARSE credentials just to send push notification. Remove these lines in your project -->
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="xf4nl2pBvNEkGADXxuN8yLzRchlvTqBoOWV2oCg0" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="mmuoBufaET15mKzzBMsrUUT99VnxOqlkRPs7tdNX" />
+        <!-- PARSE credentials END -->
 
         <provider
             android:name=".repository.database.AndroidGuidelinesContentProvider"
@@ -35,6 +51,34 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!-- For push notifications -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.ciandt.sample.referenceapplication.gcm" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".notification.PushNotificationService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.example.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

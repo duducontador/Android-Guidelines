@@ -15,5 +15,6 @@ public class NetworkConstants {
 
     public static final class Endpoints {
         public static final String LOGIN = "login";
+        public static final String GCM_REGISTRATION = "login";
     }
 }
