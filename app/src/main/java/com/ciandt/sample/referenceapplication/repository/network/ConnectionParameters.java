@@ -1,5 +1,7 @@
 package com.ciandt.sample.referenceapplication.repository.network;
 
+import com.ciandt.sample.referenceapplication.infrastructure.ApplicationConfiguration;
+
 import java.util.AbstractMap;
 
 /**
@@ -151,8 +153,8 @@ public class ConnectionParameters {
     }
 
     public static final class Defaults {
-        // TODO: Set your default host
-        public static final String HOST = "api.parse.com/1";
+
+        public static final String HOST = ApplicationConfiguration.getDefaultHost();
         // TODO: Set your default scheme
         public static final String SCHEME = Scheme.HTTPS;
         // mEndpoint must be provided
