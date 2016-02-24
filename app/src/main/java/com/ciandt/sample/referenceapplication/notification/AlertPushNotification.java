@@ -14,28 +14,7 @@ import com.ciandt.sample.referenceapplication.ui.main.MainActivity;
 
 public abstract class AlertPushNotification extends PushNotification {
 
-    public static final int NEW_TRAINING_ID = 1;
-    public static final int NEW_BADGE_ID = 2;
-    public static final int NEW_DAN_ID = 3;
-    public static final int NEW_TRIAL_EXTENDED=4;
-    public static final int DOWNLOAD_NOT_ENOUGH_SPACE = 5;
-    public static final int PRODUCT_BLOCKED_ID = 6;
-    public static final int TRIAL_EXPIRING_ID = 7;
-    public static final int PAYMENT_FAILED_ID = 8;
-    public static final int WAITING_NETWORK = 9;
-    public static final int MIXPANEL_ID = 10;
-    public static final int CUSTOM_MESSAGE_ID = 11;
-
-    // these values are agreed with the backend. Do not change them.
-    protected static final String ACTION_NEW_TRAINING = "btfitTraining";
-    protected static final String ACTION_GAMEFICATION = "btfitGamefication";
-    protected static final String ACTION_MIXPANEL = "btfitMixPanel";
-    protected static final String ACTION_CUSTOM_MESSAGE = "btfitCustomMessage";
-
-    /**
-     * Action to be triggered when user clicks on the notification
-     */
-    protected String mUserAction;
+    public static final int TRIAL_EXPIRING_ID = 1;
 
     /**
      * Message to be shown on the notification body
@@ -63,7 +42,7 @@ public abstract class AlertPushNotification extends PushNotification {
         super(ctx);
         mRes = mContext.getResources();
 
-        // TODO: change these values to your own
+        // TODO: change these default values to your own and overwite them on the specific implemetations
         mTitle = "New Push";
         mTickerText = "You have a new push notification";
         mMessage = "Congratulations! You have a new Push Notification";
@@ -82,10 +61,6 @@ public abstract class AlertPushNotification extends PushNotification {
         stackBuilder.addNextIntent(actionIntent);
 
         mPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-    }
-
-    public void setUserAction(String userAction) {
-        mUserAction = userAction;
     }
 
     // Put the message into a notification and post it.

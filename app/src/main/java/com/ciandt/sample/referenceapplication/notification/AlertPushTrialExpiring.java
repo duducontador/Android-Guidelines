@@ -5,16 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.TaskStackBuilder;
 
+import com.ciandt.sample.referenceapplication.R;
 import com.ciandt.sample.referenceapplication.ui.main.MainActivity;
 
 public class AlertPushTrialExpiring extends AlertPushNotification {
 
-    public AlertPushTrialExpiring(Context ctx) {
+    public AlertPushTrialExpiring(Context ctx, int remaining) {
         super(ctx);
 
         // TODO: implement your own logic
-        mTitle = "Your trial is expiring";
-        mMessage = "You have 3 more days of free trial. Click here and became premium";
+        mTitle = ctx.getString(R.string.push_trial_expiring_title);
+        mMessage = ctx.getString(R.string.push_trial_expiring_message, remaining);
 
         // Default action
         Intent actionIntent = new Intent(mContext, MainActivity.class);

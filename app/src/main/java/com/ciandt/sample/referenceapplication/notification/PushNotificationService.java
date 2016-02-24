@@ -11,14 +11,14 @@ import org.json.JSONObject;
 public class PushNotificationService extends GcmListenerService {
 
     // TODO: handle the json notification on your needs
-    private static final String KEY_SNS_ROOT = "default";
+    private static final String KEY_PUSH_MESSAGE = "data";
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
         if (!data.isEmpty()) {
             // TODO: ATHILA - handle notification
             String pushMessage;
-            pushMessage = data.getString(KEY_SNS_ROOT);
+            pushMessage = data.getString(KEY_PUSH_MESSAGE);
             handleNotification(pushMessage);
             MyLog.debug("New push notification arrived:");
             MyLog.debug(pushMessage);
