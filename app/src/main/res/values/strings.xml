@@ -15,4 +15,6 @@
     <string name="error_no_connection">There is no internet connection</string>
     <string name="error_generic">The operation could not be completed. Please, try again later.</string>
     <string name="msg_no_result_found">No result found.</string>
+    <string name="user_logged">Usuário já se autenticou!</string>
+    <string name="logout">Logout</string>
 </resources>

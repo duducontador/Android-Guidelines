@@ -1,9 +1,11 @@
 package com.ciandt.sample.referenceapplication.business;
 
 import android.content.Context;
+import android.preference.Preference;
 
 import com.ciandt.sample.referenceapplication.entity.User;
 import com.ciandt.sample.referenceapplication.infrastructure.OperationResult;
+import com.ciandt.sample.referenceapplication.infrastructure.SecurityPreferences;
 import com.ciandt.sample.referenceapplication.repository.network.BackendIntegrator;
 import com.ciandt.sample.referenceapplication.repository.network.ConnectionParameters;
 import com.ciandt.sample.referenceapplication.repository.network.NetworkConstants;
@@ -13,9 +15,6 @@ import org.json.JSONObject;
 import java.util.AbstractMap;
 import java.util.HashMap;
 
-/**
- * Created by athila on 02/12/15.
- */
 public class UserBusiness extends BaseBusiness {
 
     private BackendIntegrator mBackendIntegrator;
@@ -46,6 +45,8 @@ public class UserBusiness extends BaseBusiness {
             result.setError(error);
         } else {
             User user = new User(rawResult.getResult());
+            SecurityPreferences preferences = new SecurityPreferences(this.mContext);
+            preferences.storeString("user", user.getUsername());
             result.setResult(user);
         }
 

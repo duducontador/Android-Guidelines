@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.ciandt.sample.referenceapplication.R;
 import com.ciandt.sample.referenceapplication.entity.User;
 import com.ciandt.sample.referenceapplication.infrastructure.OperationListener;
+import com.ciandt.sample.referenceapplication.infrastructure.SecurityPreferences;
 import com.ciandt.sample.referenceapplication.manager.UserManager;
 import com.ciandt.sample.referenceapplication.repository.network.NetworkConstants;
 import com.ciandt.sample.referenceapplication.ui.main.MainActivity;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         loadUI();
         setListeners();
         initialize();
+        checkUserLogged();
     }
 
     @Override
@@ -203,6 +205,15 @@ public class LoginActivity extends AppCompatActivity {
                 showProgress(false);
             }
         };
+    }
+
+    private void checkUserLogged() {
+        SecurityPreferences preferences = new SecurityPreferences(this);
+        if (preferences.hasStoredKey("user")) {
+            Toast.makeText(LoginActivity.this, R.string.user_logged, Toast.LENGTH_LONG).show();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
     }
 }
 
