@@ -2,12 +2,16 @@ package com.ciandt.sample.referenceapplication.infrastructure;
 
 import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.ciandt.sample.referenceapplication.notification.setup.GcmRegistrationService;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.SaveCallback;
+
+import net.sqlcipher.database.SQLiteDatabase;
 
 public class MyApplication extends Application {
 
@@ -24,5 +28,16 @@ public class MyApplication extends Application {
                 startService(new Intent(MyApplication.this, GcmRegistrationService.class));
             }
         });
+    }
+
+    public void initSQLCipher() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isLoadSQLCipher = sharedPreferences.getBoolean("isLoadSQLCipher", false);
+
+        if (!isLoadSQLCipher) {
+            SQLiteDatabase.loadLibs(this);
+            sharedPreferences.edit()
+                    .putBoolean("isLoadSQLCipher", true).commit();
+        }
     }
 }
