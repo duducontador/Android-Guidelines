@@ -1,10 +1,15 @@
 package com.ciandt.sample.referenceapplication.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,8 +18,10 @@ import android.widget.Toast;
 import com.ciandt.sample.referenceapplication.R;
 import com.ciandt.sample.referenceapplication.entity.Product;
 import com.ciandt.sample.referenceapplication.infrastructure.OperationListener;
+import com.ciandt.sample.referenceapplication.infrastructure.SecurityPreferences;
 import com.ciandt.sample.referenceapplication.manager.ProductManager;
 import com.ciandt.sample.referenceapplication.repository.database.DatabaseConstants;
+import com.ciandt.sample.referenceapplication.ui.login.LoginActivity;
 
 import java.util.List;
 
@@ -50,6 +57,27 @@ public class MainActivity extends AppCompatActivity {
         mTextViewProductList = (TextView) findViewById(R.id.textview_product_list);
 
         setListeners();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                SecurityPreferences preferences = new SecurityPreferences(this);
+                preferences.removeStoredString("user");
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void setListeners() {

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">(free) CI&amp;T Android - Guidelines</string>
+    <string name="internal_error">Internal Error</string>
 </resources>
