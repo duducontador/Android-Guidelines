@@ -1,4 +1,4 @@
-package com.ciandt.sample.referenceapplication.notification;
+package com.ciandt.sample.referenceapplication.notification.setup;
 
 import android.content.Intent;
 

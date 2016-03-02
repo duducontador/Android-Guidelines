@@ -3,7 +3,7 @@ package com.ciandt.sample.referenceapplication.infrastructure;
 import android.app.Application;
 import android.content.Intent;
 
-import com.ciandt.sample.referenceapplication.notification.GcmRegistrationService;
+import com.ciandt.sample.referenceapplication.notification.setup.GcmRegistrationService;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;

@@ -73,7 +73,7 @@
         </service>
 
         <service
-            android:name=".notification.GcmInstanceIDListenerService"
+            android:name=".notification.setup.GcmInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
@@ -81,7 +81,7 @@
         </service>
 
         <service
-            android:name=".notification.GcmRegistrationService"
+            android:name=".notification.setup.GcmRegistrationService"
             android:exported="false">
         </service>
         <!-- Push notifications END -->
