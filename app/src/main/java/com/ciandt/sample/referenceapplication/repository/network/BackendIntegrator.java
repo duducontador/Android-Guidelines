@@ -40,9 +40,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManagerFactory;
 
-/**
- * Created by athila on 11/11/15.
- */
 public class BackendIntegrator {
     private static final List<String> certs = Collections.singletonList("my_backend_certificates");
 
@@ -117,31 +114,31 @@ public class BackendIntegrator {
 
                 if (httpResponseCode == HttpURLConnection.HTTP_OK) {
                     inputStream = new BufferedInputStream(connection.getInputStream());
-                    scanner = new Scanner(inputStream);
-                    scanner.useDelimiter("\\A");
-
-                    String responseData = "";
-                    if (scanner.hasNext()) {
-                        responseData = scanner.next();
-                    }
-
-                    Log.d("ReferenceApplication", "Server Response:");
-                    Log.d("ReferenceApplication", responseData);
-
-                    // Validating the result
-                    JSONObject resultData;
-                    if (!TextUtils.isEmpty(responseData)) {
-                        resultData = new JSONObject(responseData);
-                    } else {
-                        resultData = new JSONObject();
-                    }
-
-                    result.setResult(resultData);
-
                 } else {
-                    Log.d("ReferenceApplication", "HttpError from server: " + httpResponseCode);
+                    inputStream = new BufferedInputStream(connection.getErrorStream());
                     result.setError(httpResponseCode);
                 }
+                scanner = new Scanner(inputStream);
+                scanner.useDelimiter("\\A");
+
+                String responseData = "";
+                if (scanner.hasNext()) {
+                    responseData = scanner.next();
+                }
+
+                Log.d("ReferenceApplication", "Server Response:");
+                Log.d("ReferenceApplication", responseData);
+
+                // Validating the result
+                JSONObject resultData;
+                if (!TextUtils.isEmpty(responseData)) {
+                    resultData = new JSONObject(responseData);
+                } else {
+                    resultData = new JSONObject();
+                }
+
+                result.setResult(resultData);
+
             } else {
                 Log.e("ReferenceApplication", "No connection available. Aborting...");
                 result.setError(NetworkConstants.Error.NO_CONNECTION_AVAILABLE);
@@ -195,7 +192,7 @@ public class BackendIntegrator {
         KeyStore keyStore = KeyStore.getInstance(keyStoreType);
         keyStore.load(null, null);
 
-        for (int i=0; i < certs.size(); i++) {
+        for (int i = 0; i < certs.size(); i++) {
             InputStream inputStream = new ByteArrayInputStream(Base64.decode(
                     certs.get(i).getBytes(), Base64.DEFAULT));
             Certificate ca;

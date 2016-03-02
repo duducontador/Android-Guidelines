@@ -15,5 +15,7 @@ public class NetworkConstants {
 
     public static final class Endpoints {
         public static final String LOGIN = "login";
+        // TODO: Using Parse for push notification. Change this to your own backend endpoint
+        public static final String PARSE_REGISTRATION = "installations";
     }
 }
