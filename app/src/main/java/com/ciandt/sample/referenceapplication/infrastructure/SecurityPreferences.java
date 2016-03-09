@@ -354,7 +354,7 @@ public class SecurityPreferences {
         keyWriter.init(Cipher.ENCRYPT_MODE, secretKey);
     }
 
-    public class SecurePreferencesException extends RuntimeException {
+    public static class SecurePreferencesException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
 
