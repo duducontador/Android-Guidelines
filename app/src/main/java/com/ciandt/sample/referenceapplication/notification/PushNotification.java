@@ -5,9 +5,10 @@ import android.content.Context;
 import com.ciandt.sample.referenceapplication.infrastructure.MyLog;
 
 
+@SuppressWarnings("WeakerAccess")
 public abstract class PushNotification {
 
-    protected Context mContext;
+    protected final Context mContext;
 
     protected PushNotification(Context ctx) {
         mContext = ctx.getApplicationContext();

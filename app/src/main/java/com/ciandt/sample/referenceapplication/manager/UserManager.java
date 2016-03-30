@@ -8,12 +8,9 @@ import com.ciandt.sample.referenceapplication.entity.User;
 import com.ciandt.sample.referenceapplication.infrastructure.OperationListener;
 import com.ciandt.sample.referenceapplication.infrastructure.OperationResult;
 
-/**
- * Created by athila on 02/12/15.
- */
 public class UserManager extends BaseManager {
 
-    private UserBusiness mUserBusiness;
+    private final UserBusiness mUserBusiness;
 
     public UserManager(Context context) {
         super(context);

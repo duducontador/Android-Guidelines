@@ -32,6 +32,7 @@ android {
         }
 
         stage {
+            //noinspection GroovyAssignabilityCheck
             initWith(buildTypes.debug)
 
             applicationIdSuffix ".stage"
@@ -42,6 +43,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //noinspection GroovyAssignabilityCheck,GroovyAssignabilityCheck
             signingConfig signingConfigs.release
 
             buildConfigField("int", "LOG_LEVEL", "0") // MyLog.LOG_LEVEL_NONE = 0;
@@ -67,16 +69,17 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support:support-annotations:23.1.1'
+    androidTestCompile 'com.android.support:support-annotations:23.2.1'
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'
 
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
 
     freeCompile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.parse.bolts:bolts-android:1.+'
-    compile 'com.parse:parse-android:1.+'
+    compile 'com.parse.bolts:bolts-android:1.1.2'
+    compile 'com.parse:parse-android:1.13.0'
+    //noinspection GradleDependency
     compile "com.google.android.gms:play-services:8.3.0"
 
     compile 'net.zetetic:android-database-sqlcipher:3.3.1-2'

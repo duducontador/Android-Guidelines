@@ -3,9 +3,8 @@ package com.ciandt.sample.referenceapplication.repository.database.table;
 /**
  * This interface represents the columns and SQLite statements for the
  * ProductTable. This table is represented in the sqlite database as Location column.
- * <p/>
- * Created by alisson on 27/01/16.
  */
+@SuppressWarnings({"unused"})
 public interface ProductTable {
 
     String TABLE_NAME = "product";

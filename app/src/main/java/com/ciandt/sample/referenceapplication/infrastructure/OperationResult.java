@@ -1,8 +1,5 @@
 package com.ciandt.sample.referenceapplication.infrastructure;
 
-/**
- * Created by athila on 11/11/15.
- */
 public class OperationResult<T> {
     public static final int NO_ERROR = -1;
 

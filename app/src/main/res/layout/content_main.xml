@@ -17,13 +17,13 @@
         android:id="@+id/button_products_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Products from database - all" />
+        android:text="@string/products_from_database_all" />
 
     <Button
         android:id="@+id/button_products_on_sale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Products from database - on sale" />
+        android:text="@string/products_from_database_on_sale" />
 
     <TextView
         android:id="@+id/textview_product_list"

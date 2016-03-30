@@ -1,8 +1,6 @@
 package com.ciandt.sample.referenceapplication.infrastructure;
 
-/**
- * Created by alisson on 2/10/16.
- */
+@SuppressWarnings("WeakerAccess")
 public final class ApplicationConfigurationExtra {
 
     // DEBUG - DEVELOPMENT

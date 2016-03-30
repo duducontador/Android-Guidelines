@@ -10,12 +10,9 @@ import com.ciandt.sample.referenceapplication.infrastructure.OperationResult;
 
 import java.util.List;
 
-/**
- * Created by alisson on 27/01/16.
- */
 public class ProductManager extends BaseManager {
 
-    private ProductBusiness mProductBusiness;
+    private final ProductBusiness mProductBusiness;
 
     public ProductManager(Context context) {
         super(context);

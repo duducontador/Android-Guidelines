@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.ciandt.sample.referenceapplication.infrastructure.MyLog;
 
+@SuppressWarnings("WeakerAccess")
 public class AlertPushFactory {
 
     // TODO: these values are agreed with the backend. Define here your own Alert Push tags you wish to handle
@@ -12,7 +13,7 @@ public class AlertPushFactory {
 
     public static AlertPushNotification createAlertPush(Context ctx, String tag, String extra) {
         if (tag == null) {
-            MyLog.error("New push notification of type alert does not have 'tag' atribute");
+            MyLog.error("New push notification of type alert does not have 'tag' attribute");
             return null;
         }
 

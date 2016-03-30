@@ -6,16 +6,14 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by athila on 02/12/15.
- */
+@SuppressWarnings("WeakerAccess")
 public class BaseManager {
-    private List<AsyncTask<?, ?, ?>> mTaskList;
-    protected Context mContext;
+    private final List<AsyncTask<?, ?, ?>> mTaskList;
+    protected final Context mContext;
 
     protected BaseManager(Context context) {
         mContext = context;
-        mTaskList = new ArrayList<AsyncTask<?, ?, ?>>();
+        mTaskList = new ArrayList<>();
     }
 
     public void cancelOperations() {

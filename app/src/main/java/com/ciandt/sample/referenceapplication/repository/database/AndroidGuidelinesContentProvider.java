@@ -9,16 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.ciandt.sample.referenceapplication.BuildConfig;
 import com.ciandt.sample.referenceapplication.repository.database.table.ProductTable;
 
-/**
- * Content Provider implementation.
- * <p/>
- * Created by alisson on 27/01/16.
- */
+@SuppressWarnings({"ConstantConditions", "JavaDoc"})
 public class AndroidGuidelinesContentProvider extends ContentProvider {
 
     private static final String AUTHORITY = BuildConfig.APPLICATION_ID;
@@ -31,7 +28,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
     private static final int PRODUCT_DIR = 0;
     private static final int PRODUCT_ID = 1;
 
-    private static UriMatcher URI_MATCHER;
+    private static final UriMatcher URI_MATCHER;
 
     // Configuration of UriMatcher
     static {
@@ -63,7 +60,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
      * @return content type from type Content.CONTENT_TYPE or Content.CONTENT_ITEM_TYPE
      */
     @Override
-    public final String getType(Uri uri) {
+    public final String getType(@NonNull Uri uri) {
 
         switch (URI_MATCHER.match(uri)) {
 
@@ -88,7 +85,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
      * @return Cursor with results
      */
     @Override
-    public final Cursor query(Uri uri, String[] projection, String selection,
+    public final Cursor query(@NonNull Uri uri, String[] projection, String selection,
                               String[] selectionArgs, String sortOrder) {
 
         SQLiteDatabase dbConnection = database.getReadableDatabase();
@@ -121,7 +118,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
      * @return uri of inserted element from type Uri
      */
     @Override
-    public final Uri insert(Uri uri, ContentValues values) {
+    public final Uri insert(@NonNull Uri uri, ContentValues values) {
 
         SQLiteDatabase dbConnection = database.getWritableDatabase();
 
@@ -156,7 +153,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
      * @return number of affected rows
      */
     @Override
-    public final int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    public final int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
         SQLiteDatabase dbConnection = database.getWritableDatabase();
         int updateCount = 0;
@@ -202,7 +199,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
      * @return number of deleted rows
      */
     @Override
-    public final int delete(Uri uri, String selection, String[] selectionArgs) {
+    public final int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
         SQLiteDatabase dbConnection = database.getWritableDatabase();
         int deleteCount = 0;
@@ -245,10 +242,10 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
      * @return number of inserted rows
      */
     @Override
-    public final int bulkInsert(Uri uri, ContentValues[] contValues) {
+    public final int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] contValues) {
 
         SQLiteDatabase dbConnection = database.getWritableDatabase();
-        String table = null;
+        String table;
         int insertCount = 0;
 
         try {
@@ -306,7 +303,7 @@ public class AndroidGuidelinesContentProvider extends ContentProvider {
         public static final String CONTENT_PATH = "product";
 
         /**
-         * Sepecifies the type for the folder and the single item of the ProductTable.
+         * Specifies the type for the folder and the single item of the ProductTable.
          */
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.mdsdacp.product";
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.mdsdacp.product";

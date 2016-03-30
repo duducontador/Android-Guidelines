@@ -1,8 +1,5 @@
 package com.ciandt.sample.referenceapplication.repository.network;
-
-/**
- * Created by athila on 11/11/15.
- */
+@SuppressWarnings({"unused"})
 public class NetworkConstants {
 
     // TODO: map your own errors

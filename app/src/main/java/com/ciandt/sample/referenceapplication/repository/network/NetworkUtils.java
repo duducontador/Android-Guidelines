@@ -3,9 +3,7 @@ package com.ciandt.sample.referenceapplication.repository.network;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
-/**
- * Created by athila on 11/11/15.
- */
+@SuppressWarnings("WeakerAccess")
 public class NetworkUtils {
 
     public static boolean isConnectionAvailable(Context context) {

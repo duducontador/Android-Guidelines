@@ -6,12 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.ciandt.sample.referenceapplication.repository.database.table.ProductTable;
 
-/**
- * Created by alisson on 27/01/16.
- */
+@SuppressWarnings("WeakerAccess")
 public class DatabaseImpl extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "ciandtandroidguidelines.db";
+    private static final String DATABASE_NAME = "ciandt_android_guide_lines.db";
     private static final int DATABASE_VERSION = 1;
 
     public DatabaseImpl(final Context context) {
@@ -33,13 +31,13 @@ public class DatabaseImpl extends SQLiteOpenHelper {
     @Override
     public final void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
 
-        if ((oldVersion == 1) && (newVersion == 2)) {
+        //if ((oldVersion == 1) && (newVersion == 2)) {
             // Creating new tables
             //db.execSQL(NewTable.SQL_CREATE);
 
             // And altering
             //db.execSQL("ALTER TABLE " + ProductTable.TABLE_NAME + " ADD " + ProductTable.TYPE + " TEXT");
-        }
+        //}
     }
 
 }

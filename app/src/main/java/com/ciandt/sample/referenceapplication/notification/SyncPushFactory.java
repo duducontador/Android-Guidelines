@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.ciandt.sample.referenceapplication.infrastructure.MyLog;
 
+@SuppressWarnings("WeakerAccess")
 public class SyncPushFactory {
 
+    @SuppressWarnings({"UnusedParameters", "SameReturnValue"})
     public static SyncPushNotification createSyncPush(Context ctx, String tag, String extra) {
         if (tag == null) {
-            MyLog.error("New push notification of type sync does not have 'tag' atribute");
+            MyLog.error("New push notification of type sync does not have 'tag' attribute");
             return null;
         }
 

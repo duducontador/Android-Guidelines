@@ -7,10 +7,6 @@ import android.security.KeyPairGeneratorSpec;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.util.Base64;
-import android.util.Log;
-
-import com.ciandt.sample.referenceapplication.BuildConfig;
-import com.ciandt.sample.referenceapplication.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -37,10 +33,11 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.security.auth.x500.X500Principal;
 
+@SuppressWarnings("WeakerAccess")
 public class SecurityPreferences {
     private KeyStore keyStore;
     private final SharedPreferences preferences;
-    private Context context;
+    private final Context context;
 
     private Cipher writer;
     private Cipher reader;
@@ -73,6 +70,7 @@ public class SecurityPreferences {
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     public void removeStoredString(String key) {
         preferences.edit().remove(toKey(key)).apply();
     }
@@ -257,7 +255,7 @@ public class SecurityPreferences {
             throw new SecurePreferencesException(new Exception("Parameter cannot be null or empty"));
         }
 
-        String encryptedText = null;
+        String encryptedText;
         try {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 byte[] secureValue;
@@ -296,7 +294,7 @@ public class SecurityPreferences {
     }
 
     public String decryptString(String cipherText) {
-        String decryptString = null;
+        String decryptString;
 
         try {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -342,8 +340,7 @@ public class SecurityPreferences {
         return decryptString;
     }
 
-    protected void initCiphers() throws UnsupportedEncodingException,
-            NoSuchAlgorithmException,
+    protected void initCiphers() throws
             InvalidKeyException,
             InvalidAlgorithmParameterException {
         IvParameterSpec ivSpec = getIv();
@@ -355,8 +352,6 @@ public class SecurityPreferences {
     }
 
     public static class SecurePreferencesException extends RuntimeException {
-
-        private static final long serialVersionUID = 1L;
 
         public SecurePreferencesException(Throwable e) {
             super(e);

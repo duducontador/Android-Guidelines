@@ -54,7 +54,7 @@ public class GcmRegistrationService extends IntentService {
             sharedPreferences.edit().putBoolean(Constants.QuickstartPreferences.SENT_TOKEN_TO_SERVER, false).apply();
         }
         // Notify UI that registration has completed, so the progress indicator can be hidden.
-        // TODO: Implement the progress indicator at the appiclation startup
+        // TODO: Implement the progress indicator at the application startup
         Intent registrationComplete = new Intent(Constants.QuickstartPreferences.REGISTRATION_COMPLETE);
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }

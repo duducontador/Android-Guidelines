@@ -1,7 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CI&amp;T Android - Guidelines</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_login">Sign in</string>
     <string name="logout">Logout</string>
     <string name="user_logged">Usuário já se autenticou</string>
     <!-- Strings related to login -->
@@ -11,12 +9,13 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This username address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_no_connection">There is no internet connection</string>
     <string name="error_generic">The operation could not be completed. Please, try again later.</string>
     <string name="msg_no_result_found">No result found.</string>
 
     <string name="push_trial_expiring_title">Your trial is expiring</string>
-    <string name="push_trial_expiring_message">You have %1$d remaining days of free trial. Click here and become premium.</string>
+    <string name="push_trial_expiring_message" tools:ignore="PluralsCandidate">You have %1$d remaining days of free trial. Click here and become premium.</string>
+    <string name="products_from_database_all">Products from database - all</string>
+    <string name="products_from_database_on_sale">Products from database - on sale</string>
 </resources>

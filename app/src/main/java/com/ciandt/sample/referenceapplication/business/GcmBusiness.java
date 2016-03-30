@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class GcmBusiness extends BaseBusiness {
 
-    private BackendIntegrator mBackendIntegrator;
+    private final BackendIntegrator mBackendIntegrator;
 
     public GcmBusiness(Context context) {
         super(context);
@@ -23,6 +23,7 @@ public class GcmBusiness extends BaseBusiness {
         mBackendIntegrator = new BackendIntegrator(mContext);
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public OperationResult<Void> sendRegistrationToServer(String gcmToken) {
         // TODO: this example uses Parse.com as our push server. You must send your registration token to your own server
         String endpoint = NetworkConstants.Endpoints.PARSE_REGISTRATION + "/" + ParseInstallation.getCurrentInstallation().getObjectId();

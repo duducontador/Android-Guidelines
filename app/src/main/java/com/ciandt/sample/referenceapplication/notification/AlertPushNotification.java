@@ -5,13 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.support.v4.app.TaskStackBuilder;
 
 import com.ciandt.sample.referenceapplication.R;
 import com.ciandt.sample.referenceapplication.ui.main.MainActivity;
 
+@SuppressWarnings({"CanBeFinal","WeakerAccess"})
 public abstract class AlertPushNotification extends PushNotification {
 
     public static final int TRIAL_EXPIRING_ID = 1;
@@ -36,13 +36,10 @@ public abstract class AlertPushNotification extends PushNotification {
      */
     protected PendingIntent mPendingIntent;
 
-    protected Resources mRes;
-
     protected AlertPushNotification(Context ctx) {
         super(ctx);
-        mRes = mContext.getResources();
 
-        // TODO: change these default values to your own and overwite them on the specific implemetations
+        // TODO: change these default values to your own and overwrite them on the specific implementations
         mTitle = "New Push";
         mTickerText = "You have a new push notification";
         mMessage = "Congratulations! You have a new Push Notification";
@@ -64,7 +61,7 @@ public abstract class AlertPushNotification extends PushNotification {
     }
 
     // Put the message into a notification and post it.
-    protected void sendNotification(int notificationId) {
+    protected void sendNotification(@SuppressWarnings("SameParameterValue") int notificationId) {
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(mContext)
         .setSmallIcon(R.mipmap.ic_launcher)

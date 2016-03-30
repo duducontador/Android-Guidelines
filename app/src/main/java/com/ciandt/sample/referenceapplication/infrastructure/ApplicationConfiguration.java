@@ -7,9 +7,7 @@ import com.ciandt.sample.referenceapplication.BuildConfig;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by alisson on 2/10/16.
- */
+@SuppressWarnings("unused")
 public class ApplicationConfiguration {
 
     @SuppressLint("UseSparseArrays")
@@ -25,7 +23,7 @@ public class ApplicationConfiguration {
     }
 
     /**
-     * @return TlcBrasil site base url
+     * @return Tlc Brazil site base url
      */
     public static String getDefaultHost() {
         return applicationParameterCacheMap.get(Constants.ApplicationConfigurationParameter.DEFAULT_HOST);

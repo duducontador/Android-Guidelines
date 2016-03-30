@@ -3,19 +3,16 @@ package com.ciandt.sample.referenceapplication.repository.network;
 import com.ciandt.sample.referenceapplication.infrastructure.ApplicationConfiguration;
 
 import java.util.AbstractMap;
-
-/**
- * Created by athila on 11/11/15.
- */
+@SuppressWarnings({"unused"})
 public class ConnectionParameters {
-    private String mScheme;
-    private String mHost;
-    private String mEndpoint;
-    private int mConnectionTimeout;
-    private boolean mEnableSecurity;
-    private String mOperationMethod;
-    private String mRequestBody;
-    private AbstractMap<String, String> mUrlParameters;
+    private final String mScheme;
+    private final String mHost;
+    private final String mEndpoint;
+    private final int mConnectionTimeout;
+    private final boolean mEnableSecurity;
+    private final String mOperationMethod;
+    private final String mRequestBody;
+    private final AbstractMap<String, String> mUrlParameters;
 
     private ConnectionParameters(Builder builder) {
         mScheme = builder.mScheme;
@@ -82,7 +79,7 @@ public class ConnectionParameters {
             mUrlParameters = Defaults.URL_PARAMETERS;
         }
 
-        public Builder scheme(String scheme) {
+        public Builder scheme(@SuppressWarnings("SameParameterValue") String scheme) {
             this.mScheme = scheme;
             return this;
         }

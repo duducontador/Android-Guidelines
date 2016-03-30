@@ -5,23 +5,21 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
-/**
- * Created by alisson on 27/01/16.
- */
+@SuppressWarnings("WeakerAccess")
 public class BaseDAO {
 
-    protected Context mContext;
+    protected final Context mContext;
 
     protected BaseDAO(final Context context) {
         mContext = context;
     }
 
+    @SuppressWarnings("SameParameterValue")
     protected Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs,
-                        final String sortOrder) {
+                           final String sortOrder) {
 
         ContentResolver contentResolver = mContext.getContentResolver();
-        Cursor cursor = contentResolver.query(uri, projection, selection, selectionArgs, sortOrder);
 
-        return cursor;
+        return contentResolver.query(uri, projection, selection, selectionArgs, sortOrder);
     }
 }

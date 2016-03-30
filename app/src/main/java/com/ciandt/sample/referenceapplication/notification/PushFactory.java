@@ -6,6 +6,7 @@ import com.ciandt.sample.referenceapplication.infrastructure.MyLog;
 
 import org.json.JSONObject;
 
+@SuppressWarnings("WeakerAccess")
 public class PushFactory {
 
     // Push type "alert": this type of push will pop a local notification to the user

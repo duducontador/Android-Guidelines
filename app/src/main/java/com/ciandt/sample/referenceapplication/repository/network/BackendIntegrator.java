@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.ciandt.sample.referenceapplication.infrastructure.OperationResult;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -43,7 +42,7 @@ import javax.net.ssl.TrustManagerFactory;
 public class BackendIntegrator {
     private static final List<String> certs = Collections.singletonList("my_backend_certificates");
 
-    private Context mContext;
+    private final Context mContext;
 
     public BackendIntegrator(Context context) {
         mContext = context.getApplicationContext();
@@ -150,12 +149,6 @@ public class BackendIntegrator {
         } catch (ConnectException connectionException) {
             Log.e("ReferenceApplication", "Connection error. ", connectionException);
             result.setError(NetworkConstants.Error.NO_CONNECTION_AVAILABLE);
-        } catch (IOException ioException) {
-            Log.e("ReferenceApplication", "Connection error. ", ioException);
-            result.setError(NetworkConstants.Error.GENERIC_CONNECTION_ERROR);
-        } catch (JSONException jsonException) {
-            Log.e("ReferenceApplication", "Connection error. ", jsonException);
-            result.setError(NetworkConstants.Error.GENERIC_CONNECTION_ERROR);
         } catch (Exception e) {
             Log.e("ReferenceApplication", "Connection error. ", e);
             result.setError(NetworkConstants.Error.GENERIC_CONNECTION_ERROR);
@@ -195,13 +188,12 @@ public class BackendIntegrator {
         for (int i = 0; i < certs.size(); i++) {
             InputStream inputStream = new ByteArrayInputStream(Base64.decode(
                     certs.get(i).getBytes(), Base64.DEFAULT));
+
             Certificate ca;
 
-            try {
-                ca = cf.generateCertificate(inputStream);
-            } finally {
-                inputStream.close();
-            }
+            ca = cf.generateCertificate(inputStream);
+            inputStream.close();
+
             String alias = "ca" + i;
             keyStore.setCertificateEntry(alias, ca);
         }

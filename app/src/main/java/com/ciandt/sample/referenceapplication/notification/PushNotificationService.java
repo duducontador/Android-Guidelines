@@ -16,7 +16,7 @@ public class PushNotificationService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         if (!data.isEmpty()) {
-            // TODO: ATHILA - handle notification
+            // TODO: handle notification
             String pushMessage;
             pushMessage = data.getString(KEY_PUSH_MESSAGE);
             handleNotification(pushMessage);

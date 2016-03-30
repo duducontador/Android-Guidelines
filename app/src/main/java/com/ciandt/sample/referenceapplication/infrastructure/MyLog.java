@@ -12,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-@SuppressWarnings({"PointlessBooleanExpression", "ConstantConditions"})
+@SuppressWarnings({"PointlessBooleanExpression", "ConstantConditions", "unused"})
 public class MyLog {
 
     private static final String DEFAULT_TAG = "MyLog";
@@ -75,7 +75,7 @@ public class MyLog {
         }
     }
 
-    public static void error(String msg, Throwable ex) {
+    public static void error(@SuppressWarnings("SameParameterValue") String msg, Throwable ex) {
         if (BuildConfig.LOG_LEVEL >= LOG_LEVEL_ERROR && !TextUtils.isEmpty(msg)) {
             Log.e(DEFAULT_TAG, msg, ex);
         }

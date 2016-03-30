@@ -12,12 +12,9 @@ import com.ciandt.sample.referenceapplication.repository.database.table.ProductT
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by alisson on 27/01/16.
- */
 public class ProductBusiness extends BaseBusiness {
 
-    private ProductDAO mProductDAO;
+    private final ProductDAO mProductDAO;
 
     public ProductBusiness(Context context) {
         super(context);

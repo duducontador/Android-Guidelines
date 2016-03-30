@@ -1,8 +1,5 @@
 package com.ciandt.sample.referenceapplication.repository.database;
 
-/**
- * Created by alisson on 27/01/16.
- */
 public class DatabaseConstants {
 
     // TODO: map your own errors

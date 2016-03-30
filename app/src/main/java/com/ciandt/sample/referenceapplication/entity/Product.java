@@ -6,6 +6,7 @@ import com.ciandt.sample.referenceapplication.repository.database.table.ProductT
 
 import org.json.JSONObject;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Product {
 
     public static final String JSON_KEY_DESCRIPTION = "description";

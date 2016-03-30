@@ -1,5 +1,6 @@
 package com.ciandt.sample.referenceapplication.infrastructure;
 
+@SuppressWarnings("unused")
 public class Constants {
 
     public enum ApplicationConfigurationMode {

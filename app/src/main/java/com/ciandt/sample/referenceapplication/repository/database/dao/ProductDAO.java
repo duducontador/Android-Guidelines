@@ -6,9 +6,7 @@ import android.database.Cursor;
 import com.ciandt.sample.referenceapplication.repository.database.AndroidGuidelinesContentProvider;
 import com.ciandt.sample.referenceapplication.repository.database.table.ProductTable;
 
-/**
- * Created by alisson on 27/01/16.
- */
+@SuppressWarnings({"ConstantConditions", "JavaDoc", "unused"})
 public class ProductDAO extends BaseDAO {
 
     public ProductDAO(final Context context) {

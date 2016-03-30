@@ -1,7 +1,6 @@
 package com.ciandt.sample.referenceapplication.business;
 
 import android.content.Context;
-import android.preference.Preference;
 
 import com.ciandt.sample.referenceapplication.entity.User;
 import com.ciandt.sample.referenceapplication.infrastructure.OperationResult;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 
 public class UserBusiness extends BaseBusiness {
 
-    private BackendIntegrator mBackendIntegrator;
+    private final BackendIntegrator mBackendIntegrator;
 
     public UserBusiness(Context context) {
         super(context);

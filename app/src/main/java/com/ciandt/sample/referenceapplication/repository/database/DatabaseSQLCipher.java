@@ -16,14 +16,10 @@ import java.security.SecureRandom;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-import static com.ciandt.sample.referenceapplication.infrastructure.SecurityPreferences.*;
-
-/**
- * Created by felipets on 01/03/16.
- */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class DatabaseSQLCipher extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "ciandtandroidguidelines_encripytion.db";
+    private static final String DATABASE_NAME = "ciandt_android_guide_lines_encryption.db";
     private static final int DATABASE_VERSION = 1;
 
     private DatabaseSQLCipher(final Context context) {
@@ -38,26 +34,25 @@ public class DatabaseSQLCipher extends SQLiteOpenHelper {
     @Override
     public final void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion) {
 
-        if ((oldVersion == 1) && (newVersion == 2)) {
+        //if ((oldVersion == 1) && (newVersion == 2)) {
             // Creating new tables
             //db.execSQL(NewTable.SQL_CREATE);
 
             // And altering
             //db.execSQL("ALTER TABLE " + ProductTable.TABLE_NAME + " ADD " + ProductTable.TYPE + " TEXT");
-        }
+        //}
     }
 
     public static SQLiteDatabase getDatabase(final Context context) {
         DatabaseSQLCipher sqlCipher = new DatabaseSQLCipher(context);
-        SQLiteDatabase database = sqlCipher.getWritableDatabase(getKeyDataBase(context));
-        return database;
+        return sqlCipher.getWritableDatabase(getKeyDataBase(context));
     }
 
 
     private static String getKeyDataBase(Context context) {
 
         String secureKey;
-        final String keyPreferences = "secureKey_sqlchipher";
+        final String keyPreferences = "secureKey_sql_cipher";
 
         try {
 
@@ -85,8 +80,7 @@ public class DatabaseSQLCipher extends SQLiteOpenHelper {
         // Do *not* seed secureRandom! Automatically seeded from system entropy.
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(outputKeyLength, secureRandom);
-        SecretKey key = keyGenerator.generateKey();
-        return key;
+        return keyGenerator.generateKey();
     }
 
 }

@@ -37,7 +37,7 @@ public class MyApplication extends Application {
         if (!isLoadSQLCipher) {
             SQLiteDatabase.loadLibs(this);
             sharedPreferences.edit()
-                    .putBoolean("isLoadSQLCipher", true).commit();
+                    .putBoolean("isLoadSQLCipher", true).apply();
         }
     }
 }

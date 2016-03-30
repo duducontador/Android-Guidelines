@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.ciandt.sample.referenceapplication"
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    package="com.ciandt.sample.referenceapplication"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -22,7 +23,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <!-- PARSE credentials just to send push notification. Remove these lines in your project -->
         <meta-data
