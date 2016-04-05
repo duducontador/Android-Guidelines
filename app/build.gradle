@@ -75,7 +75,7 @@ android {
 }
 
 task customFindbugs(type: FindBugs) {
-    ignoreFailures = false
+    ignoreFailures = true
     effort = "max"
     reportLevel = "low"
     classes = files("$project.buildDir/intermediates/classes")
