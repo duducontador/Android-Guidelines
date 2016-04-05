@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
+//FindBugs by Jenkins
+apply plugin: 'findbugs'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -68,6 +71,27 @@ android {
         // Don't abort if Lint finds an error, otherwise the Jenkins build
         // will be marked as failed, and Jenkins won't analyse the Lint output
         abortOnError false
+    }
+}
+
+task customFindbugs(type: FindBugs) {
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "low"
+    classes = files("$project.buildDir/intermediates/classes")
+
+    // Use this only if you want exclude some errors
+    excludeFilter = file("$rootProject.rootDir/findbugs_filter.xml")
+
+    source = fileTree('src/main/java/')
+    classpath = files()
+
+    reports {
+        xml.enabled = true
+        xml.withMessages = true
+        html.enabled = !xml.isEnabled()
+        xml.destination "$project.buildDir/outputs/findbugs/findbugs-output.xml"
+        html.destination "$project.buildDir/outputs/findbugs/findbugs-output.html"
     }
 }
 
