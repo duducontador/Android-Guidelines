@@ -63,6 +63,12 @@ android {
             buildConfigField("String", "ANALYTICS_TRACK_ID", "\"UA-000000-02\"")
         }
     }
+
+    lintOptions {
+        // Don't abort if Lint finds an error, otherwise the Jenkins build
+        // will be marked as failed, and Jenkins won't analyse the Lint output
+        abortOnError false
+    }
 }
 
 dependencies {
