@@ -74,10 +74,10 @@ android {
     }
 }
 
-task customFindbugs(type: FindBugs) {
+task findbugs(type: FindBugs) {
     ignoreFailures = true
-    effort = "max"
-    reportLevel = "low"
+    effort = "default"
+    reportLevel = "medium"
     classes = files("$project.buildDir/intermediates/classes")
 
     // Use this only if you want exclude some errors
@@ -87,11 +87,17 @@ task customFindbugs(type: FindBugs) {
     classpath = files()
 
     reports {
-        xml.enabled = true
-        xml.withMessages = true
+        xml.enabled = false
+        // only one report can be enabled at a time
         html.enabled = !xml.isEnabled()
-        xml.destination "$project.buildDir/outputs/findbugs/findbugs-output.xml"
-        html.destination "$project.buildDir/outputs/findbugs/findbugs-output.html"
+        //noinspection GroovyAssignabilityCheck
+        xml {
+            destination "$project.buildDir/findbugs/findbugs-output.xml"
+            withMessages = true
+        }
+        html {
+            destination "$project.buildDir/findbugs/findbugs-output.html"
+        }
     }
 }
 
