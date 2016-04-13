@@ -20,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -101,7 +102,7 @@ public class BackendIntegrator {
                     connection.setRequestProperty("Content-Type", "application/json");
                     connection.setDoOutput(true);
 
-                    writer = new OutputStreamWriter(connection.getOutputStream());
+                    writer = new OutputStreamWriter(connection.getOutputStream(), Charset.defaultCharset());
                     String data = connectionParameters.getRequestBody();
                     Log.d("ReferenceApplication", "Sending data: " + data);
                     writer.write(data);
@@ -117,7 +118,7 @@ public class BackendIntegrator {
                     inputStream = new BufferedInputStream(connection.getErrorStream());
                     result.setError(httpResponseCode);
                 }
-                scanner = new Scanner(inputStream);
+                scanner = new Scanner(inputStream, Charset.defaultCharset().name());
                 scanner.useDelimiter("\\A");
 
                 String responseData = "";
@@ -187,7 +188,7 @@ public class BackendIntegrator {
 
         for (int i = 0; i < certs.size(); i++) {
             InputStream inputStream = new ByteArrayInputStream(Base64.decode(
-                    certs.get(i).getBytes(), Base64.DEFAULT));
+                    certs.get(i).getBytes(Charset.defaultCharset()), Base64.DEFAULT));
 
             Certificate ca;
 

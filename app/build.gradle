@@ -93,7 +93,7 @@ task findbugs(type: FindBugs) {
     classpath = files()
 
     reports {
-        xml.enabled = true
+        xml.enabled = false
         // only one report can be enabled at a time
         html.enabled = !xml.isEnabled()
         //noinspection GroovyAssignabilityCheck

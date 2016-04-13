@@ -16,4 +16,11 @@
             <Bug code="IJU" /> <!-- 'IJU' is the code for bugs related to JUnit test code -->
         </Not>
     </Match>
+
+    <!-- A method with an open stream false positive. -->
+    <Match>
+        <Class name="com.ciandt.sample.referenceapplication.infrastructure.MyLog" />
+        <Method name="logToFile" />
+        <Bug pattern="DM_DEFAULT_ENCODING" />
+    </Match>
 </FindBugsFilter>
