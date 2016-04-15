@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyPairGenerator;
@@ -133,23 +134,23 @@ public class SecurityPreferences {
                 throw new SecurePreferencesException(e);
             }
 
-            String s;
+            StringBuffer strBuf;
 
             if (publicKey.toString().contains("@")) {
-                s = publicKey.toString().split("@")[1];
-                while (s.length() <= 17) {
-                    s += "w";
+                strBuf = new StringBuffer(publicKey.toString().split("@")[1]);
+                while (strBuf.length() <= 17) {
+                    strBuf.append("w");
                 }
             } else if (publicKey.toString().length() > 16) {
-                s = publicKey.toString().substring(0, 16);
+                strBuf = new StringBuffer(publicKey.toString().substring(0, 16));
             } else {
-                s = publicKey.toString();
-                while (s.length() <= 17) {
-                    s += "w";
+                strBuf = new StringBuffer(publicKey.toString());
+                while (strBuf.length() <= 17) {
+                    strBuf.append("w");
                 }
             }
 
-            System.arraycopy(s.getBytes(), 0, iv, 0, writer.getBlockSize());
+            System.arraycopy(strBuf.toString().getBytes(Charset.defaultCharset()), 0, iv, 0, writer.getBlockSize());
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             KeyStore.PrivateKeyEntry privateKeyEntry;
             try {
@@ -160,10 +161,10 @@ public class SecurityPreferences {
             publicKey = privateKeyEntry.getCertificate().getPublicKey();
 
             String s = publicKey.toString().split(new String(new char[]{','}))[0].split(new String(new char[]{'m', 'o', 'd', 'u', 'l', 'u', 's', '='}))[1];
-            System.arraycopy(s.getBytes(), 0, iv, 0, writer.getBlockSize());
+            System.arraycopy(s.getBytes(Charset.defaultCharset()), 0, iv, 0, writer.getBlockSize());
         } else {
             iv = new byte[writer.getBlockSize()];
-            System.arraycopy(Constants.SecurityKeys.GENERIC_KEY.getBytes(), 0, iv, 0, writer.getBlockSize());
+            System.arraycopy(Constants.SecurityKeys.GENERIC_KEY.getBytes(Charset.defaultCharset()), 0, iv, 0, writer.getBlockSize());
         }
         return new IvParameterSpec(iv);
     }

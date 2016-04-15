@@ -1,5 +1,9 @@
 package com.ciandt.sample.referenceapplication.repository.database.table;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * This interface represents the columns and SQLite statements for the
  * ProductTable. This table is represented in the sqlite database as Location column.
@@ -15,11 +19,7 @@ public interface ProductTable {
     String PRODUCT_VALUE = "product_value";
     String PRODUCT_ID = "product_id";
 
-    String[] ALL_COLUMNS = new String[]{
-            ID,
-            PRODUCT_DESCRIPTION,
-            PRODUCT_VALUE,
-            PRODUCT_ID};
+    List<String> ALL_COLUMNS = Collections.unmodifiableList(Arrays.asList(ID, PRODUCT_DESCRIPTION, PRODUCT_VALUE, PRODUCT_ID));
 
     String SQL_CREATE = "CREATE TABLE " + TABLE_NAME + " ( "
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT" + ","

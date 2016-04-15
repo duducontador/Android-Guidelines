@@ -24,10 +24,10 @@ public class ProductBusiness extends BaseBusiness {
 
     public OperationResult<List<Product>> getAllProducts() {
 
-        String[] projection = ProductTable.ALL_COLUMNS;
+        List<String> projection = ProductTable.ALL_COLUMNS;
         String sortOrder = ProductTable.ORDER_BY;
 
-        Cursor cursor = mProductDAO.getAllProducts(projection, sortOrder);
+        Cursor cursor = mProductDAO.getAllProducts((String[]) projection.toArray(), sortOrder);
         List<Product> productList = getProductList(cursor);
 
         OperationResult<List<Product>> result = new OperationResult<>();
@@ -43,12 +43,12 @@ public class ProductBusiness extends BaseBusiness {
 
     public OperationResult<List<Product>> getProductsOnSale() {
 
-        String[] projection = ProductTable.ALL_COLUMNS;
+        List<String> projection = ProductTable.ALL_COLUMNS;
         String selection = ProductTable.WHERE_VALUE_ON_SALE;
         String[] selectionArgs = new String[]{"50"};
         String sortOrder = ProductTable.ORDER_BY;
 
-        Cursor cursor = mProductDAO.getProductsOnSale(projection, selection, selectionArgs, sortOrder);
+        Cursor cursor = mProductDAO.getProductsOnSale((String[]) projection.toArray(), selection, selectionArgs, sortOrder);
         OperationResult<List<Product>> result = new OperationResult<>();
 
         List<Product> productList = getProductList(cursor);

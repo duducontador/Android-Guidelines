@@ -74,6 +74,42 @@ android {
         // Don't abort if Lint finds an error, otherwise the Jenkins build
         // will be marked as failed, and Jenkins won't analyse the Lint output
         abortOnError false
+
+        // turn off checking the given issue id's
+        disable 'NewApi', 'InlinedApi', 'TrulyRandom'
+    }
+
+    dexOptions {
+        incremental = true;
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
+}
+
+task findbugs(type: FindBugs) {
+    ignoreFailures = true
+    effort = "default"
+    reportLevel = "medium"
+    classes = files("$project.buildDir/intermediates/classes")
+
+    // Use this only if you want exclude some errors
+    excludeFilter = file("$rootProject.rootDir/findbugs/findbugs-exclude.xml")
+
+    source = fileTree('src/main/java/')
+    classpath = files()
+
+    reports {
+        xml.enabled = false
+        // only one report can be enabled at a time
+        html.enabled = !xml.isEnabled()
+        //noinspection GroovyAssignabilityCheck
+        xml {
+            destination "$project.buildDir/findbugs/reports/findbugs-output.xml"
+            withMessages = true
+        }
+        html {
+            destination "$project.buildDir/findbugs/reports/findbugs-output.html"
+        }
     }
 }
 
@@ -84,37 +120,16 @@ task checkstyle(type: Checkstyle) {
     classpath = files()
 }
 
-task customFindbugs(type: FindBugs) {
-    ignoreFailures = true
-    effort = "max"
-    reportLevel = "low"
-    classes = files("$project.buildDir/intermediates/classes")
-
-    // Use this only if you want exclude some errors
-    excludeFilter = file("$rootProject.rootDir/findbugs_filter.xml")
-
-    source = fileTree('src/main/java/')
-    classpath = files()
-
-    reports {
-        xml.enabled = true
-        xml.withMessages = true
-        html.enabled = !xml.isEnabled()
-        xml.destination "$project.buildDir/outputs/findbugs/findbugs-output.xml"
-        html.destination "$project.buildDir/outputs/findbugs/findbugs-output.html"
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support:support-annotations:23.2.1'
+    androidTestCompile 'com.android.support:support-annotations:23.3.0'
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'
 
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
 
     freeCompile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.parse.bolts:bolts-android:1.4.0'
