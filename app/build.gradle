@@ -4,6 +4,9 @@ apply plugin: 'com.google.gms.google-services'
 //FindBugs by Jenkins
 apply plugin: 'findbugs'
 
+apply plugin: 'checkstyle'
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -72,6 +75,13 @@ android {
         // will be marked as failed, and Jenkins won't analyse the Lint output
         abortOnError false
     }
+}
+
+task checkstyle(type: Checkstyle) {
+    configFile file("$project.rootDir/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    classpath = files()
 }
 
 task customFindbugs(type: FindBugs) {
