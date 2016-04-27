@@ -15,3 +15,21 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-keep class com.parse.** { *; }
+-dontwarn com.parse.**
+
+# // TODO: removing log code
+-assumenosideeffects class android.util.Log {
+    public static boolean isLoggable(java.lang.String, int);
+    public static int v(...);
+    public static int i(...);
+    public static int w(...);
+    public static int d(...);
+#    public static int e(...);
+}
+
+# // TODO: removing log code
+-assumenosideeffects class com.ciandt.sample.referenceapplication.infrastructure.MyLog {
+    public static void debug(...);
+}

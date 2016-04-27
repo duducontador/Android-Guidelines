@@ -17,14 +17,16 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        resConfigs "en", "pt"
     }
 
     signingConfigs {
         release {
-            keyAlias "alias"
-            keyPassword "password"
-            storeFile file("release.keystore")
-            storePassword "password"
+            storeFile file('android_guidelines_key.jks')
+            storePassword '123456'
+            keyAlias 'android_guidelines_key_alias'
+            keyPassword '123456789'
         }
     }
 
@@ -38,7 +40,6 @@ android {
         }
 
         stage {
-            //noinspection GroovyAssignabilityCheck
             initWith(buildTypes.debug)
 
             applicationIdSuffix ".stage"
@@ -47,13 +48,15 @@ android {
         }
 
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //noinspection GroovyAssignabilityCheck,GroovyAssignabilityCheck
+            // TODO: enable resource shrinking
+            shrinkResources true
+            // TODO: enable code shrinking with ProGuard
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
 
             buildConfigField("int", "LOG_LEVEL", "0") // MyLog.LOG_LEVEL_NONE = 0;
-            buildConfigField("String", "DEFAULT_HOST", "\"api.parse.com/prod/1\"")
+            buildConfigField("String", "DEFAULT_HOST", "\"api.parse.com/1\"")
         }
     }
 
@@ -67,6 +70,9 @@ android {
         pro {
             applicationId "com.ciandt.sample.referenceapplication.pro"
             buildConfigField("String", "ANALYTICS_TRACK_ID", "\"UA-000000-02\"")
+
+            // TODO: ProGuard rules specific for flavor pro
+            //proguardFile 'some-other-rules.txt'
         }
     }
 
@@ -75,6 +81,7 @@ android {
         // will be marked as failed, and Jenkins won't analyse the Lint output
         abortOnError false
 
+        // TODO: lint disable options
         // turn off checking the given issue id's
         disable 'NewApi', 'InlinedApi', 'TrulyRandom'
     }
