@@ -20,6 +20,9 @@ android {
         versionName "1.1"
 
         resConfigs "en", "pt"
+
+        // Enabling multidex support.
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -150,4 +153,6 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
         transitive = true;
     }
+
+    compile 'com.android.support:multidex:1.0.1'
 }
