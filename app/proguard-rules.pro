@@ -16,8 +16,13 @@
 #   public *;
 #}
 
+# To resolve Parse on build release
 -keep class com.parse.** { *; }
 -dontwarn com.parse.**
+
+# To resolve Crashlytics (Fabric) on build release
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
 
 # // TODO: removing log code
 -assumenosideeffects class android.util.Log {

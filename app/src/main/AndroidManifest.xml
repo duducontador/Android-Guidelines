@@ -87,6 +87,9 @@
             android:exported="false">
         </service>
         <!-- Push notifications END -->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="d366a63ab6fdf61eee147df09007e1c18bab1c13" />
     </application>
 
 </manifest>

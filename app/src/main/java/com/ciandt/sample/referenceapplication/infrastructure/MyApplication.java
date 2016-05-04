@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.ciandt.sample.referenceapplication.notification.setup.GcmRegistrationService;
+import com.crashlytics.android.Crashlytics;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.SaveCallback;
 
+import io.fabric.sdk.android.Fabric;
 import net.sqlcipher.database.SQLiteDatabase;
 
 public class MyApplication extends Application {
@@ -18,6 +20,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         // TODO: These are Parse specific stuff necessary to push registration. Use your own server specific registration logic
         Parse.initialize(this, "oUZjvMyLohNCAlAmoi8rWQdUq1MXyDNxHvjTwVUM", "q3ToEHBRnZnYA5GXQfMxTod5r1rrJqpVcNGc9yaA");
