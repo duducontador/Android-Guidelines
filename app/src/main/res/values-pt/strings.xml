@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">CI&amp;T Android - Guidelines</string>
+    <string name="logout">Sair</string>
+    <string name="user_logged">Usuário está logado</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha (opcional)</string>
+    <string name="action_sign_in">Entrar</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="error_invalid_email">Usuário incorreto</string>
+    <string name="error_invalid_password">Senha utilizada é muito curta </string>
+    <string name="error_field_required">Este campo é obrigatório</string>
+    <string name="error_no_connection">Sem conexão com a internet</string>
+    <string name="error_generic">Não foi possível concluir a operação. Por favor, tente novamente mais tarde</string>
+    <string name="msg_no_result_found">Nenhum resultado encontrado.</string>
+
+    <string name="push_trial_expiring_title">Seu tempo gratuito está esgotando</string>
+    <string name="push_trial_expiring_message">Você possui %1$d dia(s) de utilização gratuita. Clique aqui e seja um usuário Premium.</string>
+    <string name="products_from_database_all">Produtos do banco de dados - todos</string>
+    <string name="products_from_database_on_sale">Produtos do banco de dados - promoção</string>
+</resources>
